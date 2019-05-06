@@ -1,38 +1,19 @@
 ﻿using System;
+using System.IO.Enumeration;
 using System.Threading;
 
 namespace BedsTask
 {
     internal class Program
     {
+        private const string fileName = "cells.txt";
+
         private static void Main(string[] args)
         {
-            var table = "";
+            var reader = new FromFileCellsReader();
 
-            var random = new Random();
+            var table = reader.ReadCells(fileName);
 
-            for (int i = 0; i < 190; i++)
-            {
-                for (int j = 0; j < 190; j++)
-                {
-                    var randomValue = random.Next(1, 100);
-
-                    if (randomValue % 2 == 0)
-                        table += '#';
-                    else
-                        table += '.';
-                }
-
-                table += Environment.NewLine;
-            }
-
-            /*var line = Console.ReadLine();
-
-            while (line != string.Empty)
-            {
-                table += line + Environment.NewLine;
-                line = Console.ReadLine();
-            }*/
             Console.Write(table);
             Console.ReadLine();
 
